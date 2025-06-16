@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elijah Bellamy - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main content */
+        main {
+            padding-top: 80px;
+        }
+
+        .page {
+            display: none;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Home page styles */
+        .home-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            gap: 4rem;
+        }
+
+        .bio-section {
+            flex: 1;
+            color: white;
+        }
+
+        .bio-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bio-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Page content styles */
+        .page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-align: center;
+        }
+
+        /* Projects page styles */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #000;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact page styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Resume page styles */
+        .resume-section {
+            margin-bottom: 3rem;
+        }
+
+        .resume-section h3 {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 0.5rem;
+        }
+
+        .resume-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .resume-item h4 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item .date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .home-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .bio-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .page-content {
+                margin: 1rem;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Elijah Bellamy</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About Me</a></li>
+                <li><a href="#" onclick="showPage('projects')">Projects</a></li>
+                <li><a href="#" onclick="showPage('community')">Community Service</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#" onclick="showPage('resume')">Resume</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="home-content">
+                <div class="bio-section">
+                    <h1>Elijah Bellamy</h1>
+                    <h2>Cyber Warfare Officer | Data Scientist | Systems Engineer</h2>
+                    <p class="bio-text">
+                        Welcome to my professional portfolio. I'm a commissioned officer in the United States Army Cyber Corps and a dual graduate student at Georgia Tech, pursuing advanced degrees in Computational Science & Engineering and Quantitative & Computational Finance. With a TS/SCI clearance and proven research experience, I specialize in cyber warfare, data science, and systems engineering.
+                    </p>
+                    <p class="bio-text">
+                        My unique background combines military leadership with cutting-edge technical expertise. From leading 400+ cadets as Battalion Commander at West Point to developing AI-powered attribution techniques for Army Cyber Command, I bring both strategic vision and hands-on technical skills to solve complex national security challenges.
+                    </p>
+                    <a href="#" onclick="showPage('projects')" class="cta-button">View My Work</a>
+                </div>
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <div>
+                            <p>Professional Photo</p>
+                            <p>Placeholder</p>
+                            <small>Replace with your actual photo</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Page -->
+        <section id="about" class="page">
+            <div class="page-content">
+                <h2 class="page-title">About Me</h2>
+                
+                <div style="display: flex; gap: 3rem; align-items: flex-start; margin-bottom: 3rem;">
+                    <div style="flex: 1;">
+                        <h3 style="color: #ffd700; margin-bottom: 1rem; font-size: 1.5rem;">My Journey</h3>
+                        <p style="margin-bottom: 1.5rem; line-height: 1.8;">
+                            I'm a commissioned officer in the U.S. Army Cyber Corps with a passion for leveraging advanced technology to solve complex national security challenges. My journey began at the United States Military Academy at West Point, where I earned my Bachelor's in Systems Engineering with a cyber security minor while serving as Battalion Commander, leading over 400 cadets.
+                        </p>
+                        <p style="margin-bottom: 1.5rem; line-height: 1.8;">
+                            Currently pursuing dual Master's degrees at Georgia Tech in Computational Science & Engineering and Quantitative & Computational Finance, I combine military leadership experience with cutting-edge technical expertise. My research has been published in IEEE conferences, focusing on information warfare and cyber attribution techniques.
+                        </p>
+                        <p style="margin-bottom: 1.5rem; line-height: 1.8;">
+                            What drives me is the intersection of technology, national security, and leadership. Whether developing machine learning models for Army Cyber Command, conducting open-source intelligence analysis, or mentoring the next generation of cyber warriors, I'm committed to using my skills to serve others and protect our nation's interests.
+                        </p>
+                    </div>
+                    <div style="flex: 0 0 300px;">
+                        <div style="width: 100%; height: 300px; border-radius: 15px; background: linear-gradient(45deg, #ffd700, #ffed4e); display: flex; align-items: center; justify-content: center; color: #000; text-align: center; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);">
+                            <div>
+                                <p>2LT Elijah Bellamy</p>
+                                <p>US Army Cyber Corps</p>
+                                <small>West Point Graduate</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Personal Philosophy</h3>
+                    <div class="resume-item">
+                        <h4>Continuous Learning</h4>
+                        <p>In the rapidly evolving fields of technology and finance, staying current is essential. I'm committed to lifelong learning, regularly pursuing new certifications, attending conferences, and experimenting with emerging technologies.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Ethical Technology</h4>
+                        <p>I believe technology should be a force for good. Whether developing algorithms or implementing security measures, I always consider the ethical implications and strive to create solutions that benefit society while respecting privacy and human dignity.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Collaborative Innovation</h4>
+                        <p>The best solutions emerge from diverse perspectives working together. I thrive in collaborative environments where different expertise areas intersect to create innovative approaches to complex challenges.</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Interests & Hobbies</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffd700;">
+                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Military Leadership & Service</h4>
+                            <p>Passionate about leading high-performing teams and serving my country. Experience ranges from cadet leadership at West Point to commissioned officer responsibilities in cyber warfare operations.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffd700;">
+                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Financial Markets & Investment</h4>
+                            <p>Active investor with interests in quantitative trading strategies, emerging technologies, and defense sector investments. Combining military operational knowledge with advanced financial modeling.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffd700;">
+                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Research & Academia</h4>
+                            <p>Published researcher with papers in IEEE conferences. Enjoy exploring the intersection of AI, cybersecurity, and information warfare through both academic research and practical applications.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffd700;">
+                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Athletics & Adventure</h4>
+                            <p>Former West Point Track and Field athlete who maintains an active lifestyle through running, cooking, and scuba diving. I believe physical and mental challenges build character and resilience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Fun Facts</h3>
+                    <div class="resume-item">
+                        <p>• I hold a Top Secret/SCI security clearance and have briefed senior military leaders</p>
+                        <p>• I've published research in two major IEEE conferences before age 25</p>
+                        <p>• I can code in 6+ programming languages and am fluent in military operations</p>
+                        <p>• I led 400+ cadets as Battalion Commander while maintaining academic excellence</p>
+                        <p>• I've worked across 3 time zones: from Okinawa, Japan to Augusta, Georgia to McLean, Virginia</p>
+                        <p>• I completed West Point's rigorous 4-year program while competing in Division I Track and Field</p>
+                        <p>• I'm pursuing dual Master's degrees while serving as a commissioned Army officer</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); border-radius: 15px; color: #000;">
+                    <h3 style="margin-bottom: 1rem;">Let's Connect!</h3>
+                    <p style="margin-bottom: 1.5rem;">I'm always interested in discussing new opportunities, collaborating on projects, or simply connecting with like-minded professionals.</p>
+                    <a href="#" onclick="showPage('contact')" style="display: inline-block; padding: 12px 30px; background: #000; color: #ffd700; text-decoration: none; border-radius: 25px; font-weight: 600; transition: transform 0.3s ease;">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Page -->
+        <section id="projects" class="page">
+            <div class="page-content">
+                <h2 class="page-title">My Projects</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Explore my work across three key domains:</p>
+                <div class="projects-grid">
+                    <div class="project-card" onclick="showPage('data-science')">
+                        <h3>Data Science</h3>
+                        <p>Machine learning models, statistical analysis, data visualization, and predictive analytics projects showcasing my ability to extract insights from complex datasets.</p>
+                    </div>
+                    <div class="project-card" onclick="showPage('finance')">
+                        <h3>Finance</h3>
+                        <p>Financial modeling, risk assessment, portfolio optimization, and quantitative analysis projects demonstrating expertise in financial markets and investment strategies.</p>
+                    </div>
+                    <div class="project-card" onclick="showPage('cyber')">
+                        <h3>Cybersecurity</h3>
+                        <p>Security assessments, threat analysis, incident response, and cybersecurity framework implementations protecting organizations from digital threats.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Science Projects Page -->
+        <section id="data-science" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Data Science Projects</h2>
+                <div class="resume-section">
+                    <h3>Featured Projects</h3>
+                    <div class="resume-item">
+                        <h4>AI-Powered Cyber Attribution System</h4>
+                        <p class="date">Deep Learning | TensorFlow | Python</p>
+                        <p>Developed advanced neural networks for Army Cyber Command to identify attribution in the information domain. Achieved 97% accuracy in binary classification and 93% in multiclass models. Research published in IEEE Winter Simulation Conference 2023.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Global Information Warfare Mapping System</h4>
+                        <p class="date">Knowledge Graphs | Python | Team Leadership</p>
+                        <p>Led senior capstone project creating knowledge graphs of global news networks for Army Cyber Command. Developed Python workflows to analyze interconnected information warfare patterns. Research accepted for IEEE International Systems Conference 2024.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Edge Computing for Special Operations</h4>
+                        <p class="date">Data Science | DevOps | Military Applications</p>
+                        <p>Served as team lead for pilot program developing data-at-the-edge use cases for Army Special Operations units. Created dashboards and database management solutions for real-time cyber operations support.</p>
+                    </div>
+                </div>
+                <button onclick="showPage('projects')" class="cta-button">Back to Projects</button>
+            </div>
+        </section>
+
+        <!-- Finance Projects Page -->
+        <section id="finance" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Finance Projects</h2>
+                <div class="resume-section">
+                    <h3>Featured Projects</h3>
+                    <div class="resume-item">
+                        <h4>Quantitative Trading Algorithms</h4>
+                        <p class="date">AI in Finance | Python | Statistical Modeling</p>
+                        <p>Developing advanced quantitative trading strategies as part of Georgia Tech's QCF program. Focus on AI-driven financial models and risk management frameworks for high-frequency trading applications.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>CHIPS Act Analysis</h4>
+                        <p class="date">Financial Analysis | MITRE | Policy Research</p>
+                        <p>Conducted comprehensive financial analysis of 15 companies for congressional CHIPS Act implementation. Delivered technical white papers to senior leadership, translating complex technical concepts into actionable policy recommendations.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Defense Sector Investment Research</h4>
+                        <p class="date">Quantitative Finance | Defense Industry | Python</p>
+                        <p>Applied quantitative finance methodologies to analyze defense sector investments and emerging technology trends. Combined military operational knowledge with advanced financial modeling techniques.</p>
+                    </div>
+                </div>
+                <button onclick="showPage('projects')" class="cta-button">Back to Projects</button>
+            </div>
+        </section>
+
+        <!-- Cybersecurity Projects Page -->
+        <section id="cyber" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Cybersecurity Projects</h2>
+                <div class="resume-section">
+                    <h3>Featured Projects</h3>
+                    <div class="resume-item">
+                        <h4>Cyber Threat Intelligence Platform</h4>
+                        <p class="date">Army Cyber Command | OSINT | Python</p>
+                        <p>Developed threat intelligence gathering and analysis capabilities for Army Cyber Command. Implemented automated OSINT collection systems and created analytical frameworks for cyber threat assessment.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Network Security Framework Implementation</h4>
+                        <p class="date">NIST 800-37 | Risk Management | MITRE</p>
+                        <p>Implemented comprehensive network security frameworks following NIST Special Publication 800-37. Conducted security audits and risk assessments for critical defense infrastructure systems.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Drone Cybersecurity Research</h4>
+                        <p class="date">UAV Security | Georgia Tech | Research</p>
+                        <p>Conducting advanced research on cybersecurity vulnerabilities in unmanned aerial vehicles. Developing security protocols and countermeasures for drone systems used in military operations.</p>
+                    </div>
+                </div>
+                <button onclick="showPage('projects')" class="cta-button">Back to Projects</button>
+            </div>
+        </section>
+
+        <!-- Community Service Page -->
+        <section id="community" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Community Service</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Giving back to the community through volunteer work and social impact initiatives.</p>
+                
+                <div class="resume-section">
+                    <h3>Volunteer Experience</h3>
+                    <div class="resume-item">
+                        <h4>Data Analytics Volunteer - Local Food Bank</h4>
+                        <p class="date">March 2023 - Present</p>
+                        <p>Volunteer as a data analyst to help optimize food distribution routes and inventory management. Developed dashboards that improved food delivery efficiency by 25% and reduced waste by 15%.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Financial Literacy Instructor - Community Center</h4>
+                        <p class="date">September 2022 - Present</p>
+                        <p>Teach monthly financial literacy workshops to underserved community members. Cover topics including budgeting, investing, and debt management. Have reached over 200 participants to date.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Cybersecurity Awareness Speaker - High Schools</h4>
+                        <p class="date">January 2022 - Present</p>
+                        <p>Conduct cybersecurity awareness presentations at local high schools, educating students about online safety, digital privacy, and career opportunities in cybersecurity. Presented to over 500 students across 8 schools.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Mentor - TechStart Youth Program</h4>
+                        <p class="date">June 2021 - December 2022</p>
+                        <p>Mentored underprivileged youth interested in technology careers. Provided guidance on coding, career development, and college applications. 3 of my mentees received full scholarships to computer science programs.</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Board & Committee Service</h3>
+                    <div class="resume-item">
+                        <h4>Board Member - Tech for Good Nonprofit</h4>
+                        <p class="date">January 2023 - Present</p>
+                        <p>Serve on the board of directors for a nonprofit organization that provides technology solutions to other nonprofits. Lead the strategic planning committee and oversee technology initiatives.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Committee Member - United Way Data Analytics Team</h4>
+                        <p class="date">August 2022 - Present</p>
+                        <p>Volunteer on the data analytics committee to help measure and improve the impact of United Way programs. Developed metrics dashboards and impact measurement frameworks.</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Pro Bono Work</h3>
+                    <div class="resume-item">
+                        <h4>Small Business Financial Consulting</h4>
+                        <p class="date">Ongoing</p>
+                        <p>Provide free financial consulting services to minority-owned small businesses. Help with financial planning, cash flow analysis, and investment strategies. Have assisted 15+ businesses in improving their financial health.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Nonprofit Cybersecurity Assessments</h4>
+                        <p class="date">Ongoing</p>
+                        <p>Conduct free cybersecurity assessments for local nonprofits to help them identify and address security vulnerabilities. Have completed assessments for 10+ organizations, significantly improving their security posture.</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Community Impact</h3>
+                    <div class="resume-item">
+                        <h4>Key Achievements</h4>
+                        <p>• Donated over 400 hours of volunteer service in the past two years</p>
+                        <p>• Helped raise $50,000 for local technology education programs</p>
+                        <p>• Trained 200+ community members in financial literacy</p>
+                        <p>• Mentored 12 students who successfully entered STEM careers</p>
+                        <p>• Improved operational efficiency for 8 nonprofit organizations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Get In Touch</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">I'd love to hear about your next project or opportunity.</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p><strong>Email:</strong> Elijah.J.Bellamy@outlook.com</p>
+                    <p><strong>Phone:</strong> 571.502.8467</p>
+                    <p><strong>Location:</strong> Atlanta, Georgia</p>
+                    <p><strong>LinkedIn:</strong> linkedin.com/in/ElijahBellamy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Page -->
+        <section id="resume" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Resume</h2>
+                
+                <div class="resume-section">
+                    <h3>Military Service</h3>
+                    <div class="resume-item">
+                        <h4>Cyber Warfare Officer - United States Army</h4>
+                        <p class="date">May 2024 - Present</p>
+                        <p>Commissioned officer in the U.S. Army Cyber Corps, responsible for cyber operations and information warfare capabilities. Hold TS/SCI security clearance and specialize in cyber threat analysis and attribution.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Battalion Commander - United States Military Academy</h4>
+                        <p class="date">August 2022 - May 2024</p>
+                        <p>Highest-ranking cadet responsible for leadership of 400+ cadets with diverse backgrounds. Organized and conducted military training for 300+ cadets, developing strong analytical, teamwork, and communication skills.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>First Sergeant - United States Military Academy</h4>
+                        <p class="date">Previous Leadership Role</p>
+                        <p>Second-highest ranking cadet in 140-person team. Empowered to make critical decisions ensuring successful completion of training and events. Strengthened time management and problem-solving skills in fast-paced environment.</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Professional Experience</h3>
+                    <div class="resume-item">
+                        <h4>Cyber Intern - MITRE Corporation</h4>
+                        <p class="date">May 2024 - August 2024</p>
+                        <p>Technical writer supporting congressional CHIPS Act implementation. Conducted open-source intelligence gathering on 15+ companies and delivered 5 technical white papers to senior leadership. Gained experience in NIST risk management framework and network security auditing.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Data Science Intern - US Army Cyber Command</h4>
+                        <p class="date">June 2023 - July 2023</p>
+                        <p>Team leader for West Point pilot program developing data-at-the-edge use cases for Army Special Operations. Briefed senior military leaders on mission-critical tasks and gained experience in database management and dashboard creation.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Space Operations Intern - US Army Space & Missile Defense Command</h4>
+                        <p class="date">May 2022 - July 2022</p>
+                        <p>Member of 12-person team supporting space operations in INDOPACOM region. Gained experience in various space control positions and enhanced teamwork and communication skills in joint operational environment.</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Education</h3>
+                    <div class="resume-item">
+                        <h4>Master of Science in Computational Science and Engineering</h4>
+                        <p class="date">Georgia Institute of Technology, Expected May 2026</p>
+                        <p>Concentration: Industrial Engineering. GEM Fellowship recipient. Relevant coursework: Regression Analysis, Computational Data Analysis, High Performance Computing, Cyber Security of Drones.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Master of Science in Quantitative and Computational Finance</h4>
+                        <p class="date">Georgia Institute of Technology, Expected May 2026</p>
+                        <p>Concentration: Artificial Intelligence. Relevant coursework: AI in Finance. Dual degree program combining quantitative finance with advanced computational methods.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Bachelor of Science in Systems Engineering</h4>
+                        <p class="date">United States Military Academy, May 2024</p>
+                        <p>Minor in Cyber Security. Concentration: Cyber. Superintendent's Award for Excellence. Relevant coursework: Network Engineering, Applied Neural Networks, System Simulation, Decision Analysis, Stochastic Models. Men's Track and Field athlete.</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Research & Publications</h3>
+                    <div class="resume-item">
+                        <h4>Published Research Papers</h4>
+                        <p><strong>IEEE International Systems Conference 2024:</strong> "Designing an Intelligent System to Map Global Connections" - Senior capstone research on knowledge graphs for information warfare analysis.</p>
+                        <p><strong>Winter Simulation Conference 2023:</strong> "Using Simulated Narratives to Understand Attribution in the Information Dimension" - Honors thesis research on cyber attribution techniques using deep neural networks.</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Conference Presentations</h4>
+                        <p>Winter Simulation Conference 2023 (Dallas, TX), 91st Symposium MORS (West Point, NY), Education and Professional Development Colloquium MORS (Lexington, VA)</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Skills & Certifications</h3>
+                    <div class="resume-item">
+                        <h4>Technical Skills</h4>
+                        <p>Python, C++, Java, JavaScript, Scala, HTML, TensorFlow, Microsoft Office Suite (Word, Excel, PowerPoint), Tableau, Database Management, Network Security, OSINT, High Performance Computing</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Security Clearance & Certifications</h4>
+                        <p>Top Secret/SCI Security Clearance, NIST Risk Management Framework (800-37), GEM Fellowship, Superintendent's Award for Excellence</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Leadership & Military Skills</h4>
+                        <p>Military Leadership, Strategic Planning, Operations Management, Team Building, Crisis Management, Public Speaking, Training Development</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Handle form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // Add smooth scrolling for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some interactive animations
+            const profileImage = document.querySelector('.profile-image');
+            profileImage.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.05) rotate(5deg)';
+            });
+            profileImage.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
