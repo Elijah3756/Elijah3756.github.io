@@ -848,7 +848,6 @@
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Send Message</button>
-                    <div id="form-success" style="display:none; color: #388e3c; margin-top: 1rem; font-weight: bold;">Thank you! Your message has been sent.</div>
                 </form>
                 <div style="text-align: center; margin-top: 2rem;">
                     <p><strong>Email:</strong> Elijah.J.Bellamy@outlook.com</p>
@@ -966,13 +965,6 @@
             window.scrollTo(0, 0);
         }
 
-        // Handle form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            this.reset();
-        });
-
         // Add smooth scrolling for better UX
         document.addEventListener('DOMContentLoaded', function() {
             // Add some interactive animations
@@ -1022,27 +1014,6 @@
                 });
             });
         });
-
-        // Contact form validation and success message
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                // Basic client-side validation
-                const email = contactForm.querySelector('input[name="email"]');
-                const name = contactForm.querySelector('input[name="name"]');
-                const message = contactForm.querySelector('textarea[name="message"]');
-                if (!email.value.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/) || !name.value.trim() || !message.value.trim()) {
-                    e.preventDefault();
-                    alert('Please fill out all fields with a valid email.');
-                    return false;
-                }
-                // Show success message after Formspree redirect
-                setTimeout(function() {
-                    document.getElementById('form-success').style.display = 'block';
-                    contactForm.reset();
-                }, 1000);
-            });
-        }
     </script>
 </body>
 </html>
