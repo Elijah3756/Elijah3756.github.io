@@ -127,7 +127,7 @@
         .bio-section h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #ffd700);
+            background: linear-gradient(45deg, #fff, #d4af37);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -148,7 +148,7 @@
         .cta-button {
             display: inline-block;
             padding: 12px 30px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            background: linear-gradient(45deg, #d4af37, #ffed4e);
             color: #000;
             text-decoration: none;
             border-radius: 30px;
@@ -172,7 +172,7 @@
             width: 350px;
             height: 350px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            background: linear-gradient(45deg, #d4af37, #ffed4e);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -193,7 +193,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            background: linear-gradient(45deg, #d4af37, #ffed4e);
             opacity: 0.8;
             transition: opacity 0.3s ease;
             z-index: 1;
@@ -247,7 +247,7 @@
         .page-title {
             font-size: 2.5rem;
             margin-bottom: 2rem;
-            color: #ffd700;
+            color: #d4af37;
             text-align: center;
         }
 
@@ -260,7 +260,7 @@
         }
 
         .project-card {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            background: linear-gradient(135deg, #d4af37 0%, #ffed4e 100%);
             color: #000;
             padding: 2rem;
             border-radius: 15px;
@@ -305,7 +305,7 @@
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #d4af37;
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
@@ -314,11 +314,11 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #ffd700;
+            border-color: #d4af37;
         }
 
         .submit-btn {
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            background: linear-gradient(45deg, #d4af37, #ffed4e);
             color: #000;
             padding: 12px 30px;
             border: none;
@@ -340,9 +340,9 @@
 
         .resume-section h3 {
             font-size: 1.5rem;
-            color: #ffd700;
+            color: #d4af37;
             margin-bottom: 1rem;
-            border-bottom: 2px solid #ffd700;
+            border-bottom: 2px solid #d4af37;
             padding-bottom: 0.5rem;
         }
 
@@ -379,24 +379,54 @@
             }
 
             .bio-section h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+
+            .bio-section h2 {
+                font-size: 1.1rem;
             }
 
             .profile-image {
-                width: 250px;
-                height: 250px;
+                width: 180px;
+                height: 180px;
             }
 
             .page-content {
-                margin: 1rem;
-                padding: 2rem;
+                margin: 0.5rem;
+                padding: 1rem;
+            }
+
+            .about-image-container {
+                max-width: 200px;
+                aspect-ratio: 3 / 4;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
 
         @media (max-width: 480px) {
             .profile-image {
-                width: 200px;
-                height: 200px;
+                width: 120px;
+                height: 120px;
+            }
+            .about-image-container {
+                max-width: 120px;
+            }
+            .bio-section h1 {
+                font-size: 1.5rem;
+            }
+            .bio-section h2 {
+                font-size: 1rem;
+            }
+            .page-content {
+                padding: 0.5rem;
+            }
+            .cta-button {
+                padding: 10px 18px;
+                font-size: 0.95rem;
             }
         }
 
@@ -406,7 +436,7 @@
             max-width: 320px;
             aspect-ratio: 3 / 4;
             border-radius: 24px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            background: linear-gradient(45deg, #d4af37, #ffed4e);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -523,7 +553,7 @@
                 
                 <div style="display: flex; gap: 3rem; align-items: flex-start; margin-bottom: 3rem;">
                     <div style="flex: 1;">
-                        <h3 style="color: #ffd700; margin-bottom: 1rem; font-size: 1.5rem;">My Journey</h3>
+                        <h3 style="color: #d4af37; margin-bottom: 1rem; font-size: 1.5rem;">My Journey</h3>
                         <p style="margin-bottom: 1.5rem; line-height: 1.8;">
                             I'm a commissioned officer in the U.S. Army Cyber Corps with a passion for leveraging advanced technology to solve complex national security challenges. My journey began at the United States Military Academy at West Point, where I earned my Bachelor's in Systems Engineering with a cyber security minor while serving as Battalion Commander, leading over 400 cadets.
                         </p>
@@ -582,20 +612,20 @@
                 <div class="resume-section">
                     <h3>Interests & Hobbies</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffd700;">
-                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Military Leadership & Service</h4>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #d4af37;">
+                            <h4 style="color: #d4af37; margin-bottom: 0.5rem;">Military Leadership & Service</h4>
                             <p>Passionate about leading high-performing teams and serving my country. Experience ranges from cadet leadership at West Point to commissioned officer responsibilities in cyber warfare operations.</p>
                         </div>
-                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffd700;">
-                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Financial Markets & Investment</h4>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #d4af37;">
+                            <h4 style="color: #d4af37; margin-bottom: 0.5rem;">Financial Markets & Investment</h4>
                             <p>Active investor with interests in quantitative trading strategies, emerging technologies, and defense sector investments. Combining military operational knowledge with advanced financial modeling.</p>
                         </div>
-                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffd700;">
-                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Research & Academia</h4>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #d4af37;">
+                            <h4 style="color: #d4af37; margin-bottom: 0.5rem;">Research & Academia</h4>
                             <p>Published researcher with papers in IEEE conferences. Enjoy exploring the intersection of AI, cybersecurity, and information warfare through both academic research and practical applications.</p>
                         </div>
-                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ffd700;">
-                            <h4 style="color: #ffd700; margin-bottom: 0.5rem;">Athletics & Adventure</h4>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #d4af37;">
+                            <h4 style="color: #d4af37; margin-bottom: 0.5rem;">Athletics & Adventure</h4>
                             <p>Former West Point Track and Field athlete who maintains an active lifestyle through running, cooking, and scuba diving. I believe physical and mental challenges build character and resilience.</p>
                         </div>
                     </div>
@@ -614,10 +644,10 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); border-radius: 15px; color: #000;">
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #d4af37 0%, #ffed4e 100%); border-radius: 15px; color: #000;">
                     <h3 style="margin-bottom: 1rem;">Let's Connect!</h3>
                     <p style="margin-bottom: 1.5rem;">I'm always interested in discussing new opportunities, collaborating on projects, or simply connecting with like-minded professionals.</p>
-                    <a href="#" onclick="showPage('contact')" style="display: inline-block; padding: 12px 30px; background: #000; color: #ffd700; text-decoration: none; border-radius: 25px; font-weight: 600; transition: transform 0.3s ease;">Get In Touch</a>
+                    <a href="#" onclick="showPage('contact')" style="display: inline-block; padding: 12px 30px; background: #000; color: #d4af37; text-decoration: none; border-radius: 25px; font-weight: 600; transition: transform 0.3s ease;">Get In Touch</a>
                 </div>
             </div>
         </section>
