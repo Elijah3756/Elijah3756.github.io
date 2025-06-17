@@ -479,15 +479,15 @@
 </head>
 <body>
     <header class="fade-in-on-scroll">
-        <nav>
+        <nav aria-label="Main navigation">
             <div class="logo">Elijah Bellamy</div>
-            <ul class="nav-links">
-                <li><a href="#" onclick="showPage('home')">Home</a></li>
-                <li><a href="#" onclick="showPage('about')">About Me</a></li>
-                <li><a href="#" onclick="showPage('projects')">Projects</a></li>
-                <li><a href="#" onclick="showPage('community')">Community Service</a></li>
-                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
-                <li><a href="#" onclick="showPage('resume')">Resume</a></li>
+            <ul class="nav-links" role="menubar">
+                <li><a href="#" onclick="showPage('home')" role="menuitem" tabindex="0">Home</a></li>
+                <li><a href="#" onclick="showPage('about')" role="menuitem" tabindex="0">About Me</a></li>
+                <li><a href="#" onclick="showPage('projects')" role="menuitem" tabindex="0">Projects</a></li>
+                <li><a href="#" onclick="showPage('community')" role="menuitem" tabindex="0">Community Service</a></li>
+                <li><a href="#" onclick="showPage('contact')" role="menuitem" tabindex="0">Contact</a></li>
+                <li><a href="#" onclick="showPage('resume')" role="menuitem" tabindex="0">Resume</a></li>
             </ul>
             <div class="mobile-menu">
                 <span></span>
@@ -505,7 +505,7 @@
                     <h1>Elijah Bellamy</h1>
                     <h2>Cyber Warfare Officer | Data Scientist | Systems Engineer</h2>
                     <div style="margin: 1.5rem 0 2rem 0;">
-                        <a href="https://linkedin.com/in/ElijahBellamy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; color: #0077b5; font-weight: 600; font-size: 1.1rem;">
+                        <a href="https://linkedin.com/in/ElijahBellamy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Elijah Bellamy" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; color: #0077b5; font-weight: 600; font-size: 1.1rem;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="2" y="2" width="20" height="20" rx="5" fill="#0077b5"/><path d="M8 11v5" stroke="#fff"/><circle cx="8" cy="8" r="1" fill="#fff"/><path d="M12 16v-3a2 2 0 0 1 4 0v3" stroke="#fff"/><path d="M16 11v5" stroke="#fff"/></svg>
                             <span>LinkedIn</span>
                         </a>
@@ -521,28 +521,9 @@
                 <div class="profile-section fade-in-on-scroll">
                     <div class="profile-image">
                         <picture>
-                            <source 
-                                srcset="images/optimized/Profile-photo-small.webp 200w,
-                                        images/optimized/Profile-photo-medium.webp 400w,
-                                        images/optimized/Profile-photo-large.webp 800w"
-                                sizes="(max-width: 480px) 200px,
-                                       (max-width: 768px) 250px,
-                                       350px"
-                                type="image/webp">
-                            <source 
-                                srcset="images/optimized/Profile-photo-small.jpg 200w,
-                                        images/optimized/Profile-photo-medium.jpg 400w,
-                                        images/optimized/Profile-photo-large.jpg 800w"
-                                sizes="(max-width: 480px) 200px,
-                                       (max-width: 768px) 250px,
-                                       350px"
-                                type="image/jpeg">
-                            <img 
-                                src="images/optimized/Profile-photo-medium.jpg" 
-                                alt="Elijah Bellamy" 
-                                loading="eager" 
-                                fetchpriority="high"
-                                onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+                            <source srcset="images/optimized/Profile-photo-small.webp 200w, images/optimized/Profile-photo-medium.webp 400w, images/optimized/Profile-photo-large.webp 800w" sizes="(max-width: 480px) 200px, (max-width: 768px) 250px, 350px" type="image/webp">
+                            <source srcset="images/optimized/Profile-photo-small.jpg 200w, images/optimized/Profile-photo-medium.jpg 400w, images/optimized/Profile-photo-large.jpg 800w" sizes="(max-width: 480px) 200px, (max-width: 768px) 250px, 350px" type="image/jpeg">
+                            <img src="images/optimized/Profile-photo-medium.jpg" alt="Professional headshot of Elijah Bellamy, smiling in uniform" loading="eager" fetchpriority="high" onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
                         </picture>
                     </div>
                 </div>
@@ -570,27 +551,9 @@
                     <div style="flex: 0 0 300px;">
                         <div class="about-image-container">
                             <picture>
-                                <source 
-                                    srcset="images/optimized/About-Me-photo-small.webp 200w,
-                                            images/optimized/About-Me-photo-medium.webp 400w,
-                                            images/optimized/About-Me-photo-large.webp 800w"
-                                    sizes="(max-width: 480px) 200px,
-                                           (max-width: 768px) 250px,
-                                           350px"
-                                    type="image/webp">
-                                <source 
-                                    srcset="images/optimized/About-Me-photo-small.jpg 200w,
-                                            images/optimized/About-Me-photo-medium.jpg 400w,
-                                            images/optimized/About-Me-photo-large.jpg 800w"
-                                    sizes="(max-width: 480px) 200px,
-                                           (max-width: 768px) 250px,
-                                           350px"
-                                    type="image/jpeg">
-                                <img 
-                                    src="images/optimized/About-Me-photo-medium.jpg" 
-                                    alt="Elijah Bellamy" 
-                                    loading="lazy"
-                                    onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
+                                <source srcset="images/optimized/About-Me-photo-small.webp 200w, images/optimized/About-Me-photo-medium.webp 400w, images/optimized/About-Me-photo-large.webp 800w" sizes="(max-width: 480px) 200px, (max-width: 768px) 250px, 350px" type="image/webp">
+                                <source srcset="images/optimized/About-Me-photo-small.jpg 200w, images/optimized/About-Me-photo-medium.jpg 400w, images/optimized/About-Me-photo-large.jpg 800w" sizes="(max-width: 480px) 200px, (max-width: 768px) 250px, 350px" type="image/jpeg">
+                                <img src="images/optimized/About-Me-photo-medium.jpg" alt="Elijah Bellamy in military dress uniform, smiling outdoors" loading="lazy" onload="this.classList.add('loaded'); this.parentElement.parentElement.classList.add('loaded')">
                             </picture>
                         </div>
                     </div>
