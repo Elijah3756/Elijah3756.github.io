@@ -7,6 +7,28 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <meta name="description" content="Elijah Bellamy's professional portfolio. Cyber Warfare Officer, Data Scientist, and Systems Engineer. Explore projects, experience, and contact information.">
+    <link rel="canonical" href="https://elijah3756.github.io/">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elijah3756.github.io/">
+    <meta property="og:title" content="Elijah Bellamy - Professional Portfolio">
+    <meta property="og:description" content="Cyber Warfare Officer, Data Scientist, and Systems Engineer. Explore projects, experience, and contact information.">
+    <meta property="og:image" content="https://elijah3756.github.io/images/optimized/Profile-photo-large.jpg">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://elijah3756.github.io/">
+    <meta name="twitter:title" content="Elijah Bellamy - Professional Portfolio">
+    <meta name="twitter:description" content="Cyber Warfare Officer, Data Scientist, and Systems Engineer. Explore projects, experience, and contact information.">
+    <meta name="twitter:image" content="https://elijah3756.github.io/images/optimized/Profile-photo-large.jpg">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7E130X4JC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B7E130X4JC');
+    </script>
     <style>
         * {
             margin: 0;
@@ -250,8 +272,9 @@
         .page-title {
             font-size: 2.5rem;
             margin-bottom: 2rem;
-            color: #d4af37;
+            color: #bfa14a;
             text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.08);
         }
 
         /* Projects page styles */
@@ -280,6 +303,8 @@
         .project-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            color: #bfa14a;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.08);
         }
 
         .project-card p {
@@ -343,10 +368,11 @@
 
         .resume-section h3 {
             font-size: 1.5rem;
-            color: #d4af37;
+            color: #bfa14a;
             margin-bottom: 1rem;
             border-bottom: 2px solid #d4af37;
             padding-bottom: 0.5rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.08);
         }
 
         .resume-item {
@@ -474,6 +500,15 @@
         .fade-in-on-scroll.visible {
             opacity: 1;
             transform: none;
+        }
+
+        /* For gold text on white backgrounds, use #bfa14a for better contrast */
+        .page-title, .resume-section h3, .project-card h3, .about-image-container h3, .bio-section h1, .bio-section h2 {
+            color: #bfa14a;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        .cta-button, .submit-btn, .project-card, .profile-image, .about-image-container {
+            background: linear-gradient(45deg, #d4af37, #ffed4e);
         }
     </style>
 </head>
