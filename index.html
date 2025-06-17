@@ -832,24 +832,23 @@
             <div class="page-content fade-in-on-scroll">
                 <h2 class="page-title fade-in-on-scroll">Get In Touch</h2>
                 <p style="text-align: center; margin-bottom: 2rem;">I'd love to hear about your next project or opportunity.</p>
-                <form class="contact-form">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/xkgbbdgv" method="POST" accept-charset="UTF-8" autocomplete="off">
+                    <!-- Honeypot field for spam protection -->
+                    <input type="text" name="_gotcha" style="display:none">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
+                        <input type="email" id="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
+                        <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Send Message</button>
+                    <div id="form-success" style="display:none; color: #388e3c; margin-top: 1rem; font-weight: bold;">Thank you! Your message has been sent.</div>
                 </form>
                 <div style="text-align: center; margin-top: 2rem;">
                     <p><strong>Email:</strong> Elijah.J.Bellamy@outlook.com</p>
@@ -1023,6 +1022,27 @@
                 });
             });
         });
+
+        // Contact form validation and success message
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                // Basic client-side validation
+                const email = contactForm.querySelector('input[name="email"]');
+                const name = contactForm.querySelector('input[name="name"]');
+                const message = contactForm.querySelector('textarea[name="message"]');
+                if (!email.value.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/) || !name.value.trim() || !message.value.trim()) {
+                    e.preventDefault();
+                    alert('Please fill out all fields with a valid email.');
+                    return false;
+                }
+                // Show success message after Formspree redirect
+                setTimeout(function() {
+                    document.getElementById('form-success').style.display = 'block';
+                    contactForm.reset();
+                }, 1000);
+            });
+        }
     </script>
 </body>
 </html>
