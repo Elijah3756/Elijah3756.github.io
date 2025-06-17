@@ -996,6 +996,29 @@
             }
             window.addEventListener('scroll', checkVisibility);
             checkVisibility();
+
+            // Mobile menu toggle logic
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            mobileMenu.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '60px';
+                navLinks.style.right = '20px';
+                navLinks.style.background = '#222';
+                navLinks.style.padding = '1rem 2rem';
+                navLinks.style.borderRadius = '12px';
+                navLinks.style.zIndex = '2000';
+            });
+            // Close menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
+                });
+            });
         });
     </script>
 </body>
